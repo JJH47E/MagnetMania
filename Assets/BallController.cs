@@ -8,20 +8,21 @@ public class BallController : MonoBehaviour
     public Sprite south;
     public Sprite north;
     public bool ballPole; // false: north true: south
+    public int lv;
 
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.UnloadSceneAsync("ReloadScene");
+        SceneManager.UnloadSceneAsync("Menu");
         fin = false;
-        ballPole = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        PlayerPrefs.SetInt("curLvl", lv);
         if(fin == true){
-            SceneManager.LoadScene("ReloadScene");
+            SceneManager.LoadScene("LvlSel");
         }
         if(ballPole == true){
             spr.sprite = south;
@@ -36,12 +37,13 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.tag == "Finish")
         {
             fin = true;
-            Debug.Log("finished");
+            if(lv == PlayerPrefs.GetInt("lvl")){
+                PlayerPrefs.SetInt("lvl", lv + 1);
+            }
         }
         if (collision.gameObject.tag == "Mutator")
         {
             ballPole = !ballPole;
-            Debug.Log("inverting pole");
         }
     }
 }
