@@ -50,9 +50,10 @@ public class reload : MonoBehaviour
                 SceneManager.LoadScene("Instructions");
             }
         }
-        if(Input.GetMouseButtonDown(1)){
-            PlayerPrefs.SetInt("lvl", 1);
-            PlayerPrefs.SetInt("curLvl", 0);
-        }
+        //reset code
+        //if(Input.GetMouseButtonDown(1)){
+        //    PlayerPrefs.SetInt("lvl", 1);
+        //    PlayerPrefs.SetInt("curLvl", 0);
+        //}
     }
 }
